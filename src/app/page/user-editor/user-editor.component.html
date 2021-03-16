@@ -11,7 +11,17 @@
           type="text"
           name="name"
           [(ngModel)]="user.name"
+          pattern=".{8,40}"
+          required
         />
+        <div
+          [hidden]="
+            userForm.controls.name?.valid || userForm.controls.name?.pristine
+          "
+          class="message__error"
+        >
+          You must enter a minimum of 8 and a maximum of 40 characters!
+        </div>
       </div>
       <div class="form-group">
         <label>Email</label>
@@ -22,7 +32,17 @@
           type="text"
           name="email"
           [(ngModel)]="user.email"
+          [pattern]="emailPattern"
+          required
         />
+        <div
+          [hidden]="
+            userForm.controls.email?.valid || userForm.controls.email.pristine
+          "
+          class="error-message"
+        >
+          Add valid email
+        </div>
       </div>
       <div class="form-group">
         <label>Address</label>
@@ -32,7 +52,18 @@
           type="text"
           name="address"
           [(ngModel)]="user.address"
+          pattern=".{8,100}"
+          required
         />
+        <div
+          [hidden]="
+            userForm.controls.address?.valid ||
+            userForm.controls.address?.pristine
+          "
+          class="message__error"
+        >
+          You must enter a minimum of 8 and a maximum of 100 characters!
+        </div>
       </div>
       <div class="form-group">
         <label>Active</label>
@@ -42,7 +73,11 @@
           <option [ngValue]="false">inactive</option>
         </select>
       </div>
-      <button type="submit" class="btn btn-primary btn-block mt-5">
+      <button
+        [disabled]="userForm.invalid"
+        type="submit"
+        class="btn btn-primary btn-block mt-5"
+      >
         <i class="fa fa-save"></i>
       </button>
     </form>

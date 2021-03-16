@@ -37,6 +37,9 @@
           <td>{{ user.active }}</td>
           <td>
             <div class="btn-group">
+              <button [routerLink]="['user/' + 0]" class="btn btn-primary">
+                <i class="fa fa-plus"></i>
+              </button>
               <button [routerLink]="['user/' + user.id]" class="btn btn-info">
                 <i class="fa fa-pencil"></i>
               </button>

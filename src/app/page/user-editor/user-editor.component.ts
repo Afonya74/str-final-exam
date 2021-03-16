@@ -28,6 +28,8 @@ export class UserEditorComponent implements OnInit {
     })
   );
 
+  emailPattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
   constructor(
     private userService: UserService,
     private activatedRoute: ActivatedRoute,
@@ -37,12 +39,18 @@ export class UserEditorComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(form: NgForm, user: User): void {
-    if (user.id === 0) {
-      this.userService.createUser(user).subscribe(() => {});
-      this.router.navigate(['']);
-    } else {
-      this.userService.updateUser(user).subscribe(() => {});
-      this.router.navigate(['']);
+    try {
+      if (user.id == 0) {
+        this.userService
+          .createUser(user)
+          .subscribe(() => this.router.navigate(['/']));
+      } else {
+        this.userService
+          .updateUser(user)
+          .subscribe(() => this.router.navigate(['/']));
+      }
+    } catch (error) {
+      // Error message
     }
   }
 }
