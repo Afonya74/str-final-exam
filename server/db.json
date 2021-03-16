@@ -2,10 +2,17 @@
   "users": [
     {
       "id": 1,
-      "name": "Villányi Ágnes",
+      "name": "Scarface Ronaldson",
       "email": "sronaldson0@uol.com.br",
       "address": "62825 Towne Lane",
       "active": false
+    },
+    {
+      "id": 2,
+      "name": "Granville Taplin",
+      "email": "gtaplin1@vk.com",
+      "address": "274 Jenna Center",
+      "active": true
     },
     {
       "id": 3,
