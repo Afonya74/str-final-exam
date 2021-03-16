@@ -6,17 +6,19 @@ import { UserService } from 'src/app/service/user.service';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-
   users$: Observable<User[]> = this.userService.getAll();
 
-  constructor(
-    private userService: UserService,
-  ) { }
+  constructor(private userService: UserService) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  onDelete(user: User): void {
+    alert('Biztos törlöd?');
+    this.userService.deleteUser(user).subscribe(() => {
+      this.users$ = this.userService.getAll();
+    });
   }
-
 }
