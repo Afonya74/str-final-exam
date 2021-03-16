@@ -9,16 +9,34 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit {
-  users$: Observable<User[]> = this.userService.getAll();
-
+  users$: Observable<User[]> = this.userService.userList$;
+  phrase: string = '';
+  direction: number = 1;
+  columnKey: string = '';
   constructor(private userService: UserService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.getAll();
+    this.users$.subscribe();
+  }
 
   onDelete(user: User): void {
     alert('Are you sure you want to delete this user?');
     this.userService.deleteUser(user).subscribe(() => {
-      this.users$ = this.userService.getAll();
+      this.userService.getAll();
     });
+  }
+
+  onChangePhrase(event: Event): void {
+    this.phrase = (event.target as HTMLInputElement).value;
+  }
+
+  onColumnSelect(key: string): void {
+    if (this.columnKey === key) {
+      this.direction = this.direction * -1;
+    } else {
+      this.direction = 1;
+    }
+    this.columnKey = key;
   }
 }

@@ -8,13 +8,17 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './common/navbar/navbar.component';
 import { UserListComponent } from './page/user-list/user-list.component';
 import { UserEditorComponent } from './page/user-editor/user-editor.component';
+import { SearchPipe } from './pipe/search.pipe';
+import { SortPipe } from './pipe/sort.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     UserListComponent,
-    UserEditorComponent
+    UserEditorComponent,
+    SearchPipe,
+    SortPipe
   ],
   imports: [
     BrowserModule,
