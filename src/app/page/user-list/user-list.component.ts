@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit {
   ngOnInit(): void {}
 
   onDelete(user: User): void {
-    alert('Biztos törlöd?');
+    alert('Are you sure you want to delete this user?');
     this.userService.deleteUser(user).subscribe(() => {
       this.users$ = this.userService.getAll();
     });
